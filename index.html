@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WEPRO — Склад</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<div class="admin-layout">
+  <!-- БОКОВОЕ МЕНЮ -->
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <div class="logo-icon">W</div>
+      <div class="logo-text">
+        <span class="brand-name">WEPRO</span>
+        <span class="brand-sub">Гастробар · Никольская</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section">Меню</div>
+    <nav class="sidebar__nav">
+      <a href="#" class="nav-item">Блюда</a>
+      <a href="#" class="nav-item">Категории</a>
+    </nav>
+
+    <div class="sidebar-section">Продажи</div>
+    <nav class="sidebar__nav">
+      <a href="#" class="nav-item">Заказы</a>
+      <a href="#" class="nav-item">Клиенты</a>
+    </nav>
+
+    <div class="sidebar-section">Закупки</div>
+    <nav class="sidebar__nav">
+      <a href="#" class="nav-item active">Склад <span class="badge-dot">?</span></a>
+      <a href="#" class="nav-item">Поставщики</a>
+      <a href="#" class="nav-item">Отчёты</a>
+    </nav>
+
+    <div class="sidebar__footer">
+      <div class="inventory-card">
+        <div class="inventory-title">Инвентаризация</div>
+        <div class="inventory-desc">Последняя — 27 июля.<br>Следующая через 4 дня.</div>
+      </div>
+      <div class="user-profile">
+        <div class="avatar">ИК</div>
+        <div class="user-info">
+          <div class="user-name">Ирина Ковалёва</div>
+          <div class="user-role">Закупки</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ОСНОВНОЙ КОНТЕНТ -->
+  <main class="main-content">
+    <div class="page-header">
+      <div class="breadcrumbs">Закупки / <span>Склад</span></div>
+      <div class="header-top-row">
+        <div>
+          <h1 class="page-title">Склад</h1>
+          <p class="page-subtitle">42 позиции · данные обновлены сегодня в 14:20</p>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-outline">Инвентаризация</button>
+          <button class="btn btn-outline">Экспорт</button>
+          <button class="btn btn-primary">+ Создать заказ</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ВЕРХНИЕ КАРТОЧКИ СТАТИСТИКИ -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Стоимость запасов</div>
+        <div class="stat-value">486 200 сум</div>
+        <div class="stat-trend text-danger">-4,1% <span class="trend-text">к июню</span></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Требуют дозаказа</div>
+        <div class="stat-value">7 <span class="stat-sub-value">из 42</span></div>
+        <div class="stat-trend text-muted"><span class="badge-dot-red"></span> 2 критично · 5 заканчиваются</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Закупка за июль</div>
+        <div class="stat-value">1 148 700 сум</div>
+        <div class="stat-trend text-muted"><strong>28,4%</strong> от выручки</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Списания за июль</div>
+        <div class="stat-value">18 400 сум</div>
+        <div class="stat-trend text-danger">+2 100 сум <span class="trend-text">к июню</span></div>
+      </div>
+    </div>
+
+    <!-- ПАНЕЛЬ ФИЛЬТРОВ И ПОИСКА -->
+    <div class="filters-panel">
+      <div class="filters-group">
+        <button class="filter-chip active">Все 42</button>
+        <button class="filter-chip">Заканчиваются 5</button>
+        <button class="filter-chip">Критично 2</button>
+      </div>
+      <div class="filters-group-right">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Поиск по позиции или поставщику">
+        </div>
+        <button class="dropdown-btn">Поставщик ▾</button>
+        <button class="dropdown-btn">Категория ▾</button>
+        <div class="sort-box">Сортировка: <strong>по запасу дней ↑</strong></div>
+      </div>
+    </div>
+
+    <!-- ТАБЛИЦА СКЛАДА -->
+    <div class="table-container">
+      <table class="warehouse-table">
+        <thead>
+          <tr>
+            <th class="col-checkbox"><input type="checkbox" id="select-all"></th>
+            <th>позиция</th>
+            <th class="text-right">остаток</th>
+            <th>хватит на</th>
+            <th class="text-right">расход / мес</th>
+            <th class="text-right">дозаказать</th>
+            <th class="text-right">цена</th>
+            <th class="text-right">на складе</th>
+            <th>статус</th>
+            <th class="text-center"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Группа 1 -->
+          <tr class="group-row">
+            <td colspan="10">
+              <span class="group-title">Ингредиенты и продукты</span>
+              <span class="group-count">6 поз.</span>
+              <span class="group-total">на складе 109 861 сум</span>
+            </td>
+          </tr>
+          <tr data-price="1290">
+            <td><input type="checkbox" class="row-checkbox"></td>
+            <td>
+              <div class="product-cell">
+                <div class="product-icon">🧀</div>
+                <div>
+                  <div class="product-name">Страчателла</div>
+                  <div class="product-sub">Теспро кг · срок 5 дн</div>
+                </div>
+              </div>
+            </td>
+            <td class="text-right font-medium">2,1 кг</td>
+            <td>
+              <div class="progress-cell">
+                <span class="text-danger font-medium">2,3 дн</span>
+                <div class="progress-bar"><div class="progress-fill fill-danger" style="width: 25%;"></div></div>
+              </div>
+            </td>
+            <td class="text-right">27,4 кг<br><span class="sub-price">35 346 сум</span></td>
+            <td class="text-right">
+              <span class="order-stepper">
+                <span class="step-btn minus">−</span>
+                <span class="step-val">8</span> кг
+                <span class="step-btn plus">+</span>
+              </span>
+            </td>
+            <td class="text-right">1 290 сум</td>
+            <td class="text-right font-medium item-total">2 709 сум</td>
+            <td><span class="badge badge--danger">Критично</span></td>
+            <td class="text-center actions-cell">•••</td>
+          </tr>
+          <tr data-price="1450">
+            <td><input type="checkbox" class="row-checkbox"></td>
+            <td>
+              <div class="product-cell">
+                <div class="product-icon">🐟</div>
+                <div>
+                  <div class="product-name">Лосось с/м, филе</div>
+                  <div class="product-sub">Норд Фиш кг охл. о... 2</div>
+                </div>
+              </div>
+            </td>
+            <td class="text-right font-medium">8,4 кг</td>
+            <td>
+              <div class="progress-cell">
+                <span class="text-danger font-medium">2,6 дн</span>
+                <div class="progress-bar"><div class="progress-fill fill-danger" style="width: 30%;"></div></div>
+              </div>
+            </td>
+            <td class="text-right">96,5 кг<br><span class="sub-price">139 925 сум</span></td>
+            <td class="text-right">
+              <span class="order-stepper">
+                <span class="step-btn minus">−</span>
+                <span class="step-val">24</span> кг
+                <span class="step-btn plus">+</span>
+              </span>
+            </td>
+            <td class="text-right">1 450 сум</td>
+            <td class="text-right font-medium item-total">12 180 сум</td>
+            <td><span class="badge badge--danger">Критично</span></td>
+            <td class="text-center actions-cell">•••</td>
+          </tr>
+          <tr data-price="420">
+            <td><input type="checkbox" class="row-checkbox"></td>
+            <td>
+              <div class="product-cell">
+                <div class="product-icon">🍅</div>
+                <div>
+                  <div class="product-name">Томаты черри на ветке</div>
+                  <div class="product-sub">Овощная база 12 кг</div>
+                </div>
+              </div>
+            </td>
+            <td class="text-right font-medium">5,8 кг</td>
+            <td>
+              <div class="progress-cell">
+                <span class="text-warn font-medium">2,8 дн</span>
+                <div class="progress-bar"><div class="progress-fill fill-warn" style="width: 35%;"></div></div>
+              </div>
+            </td>
+            <td class="text-right">61,3 кг<br><span class="sub-price">25 746 сум</span></td>
+            <td class="text-right">
+              <span class="order-stepper">
+                <span class="step-btn minus">−</span>
+                <span class="step-val">12</span> кг
+                <span class="step-btn plus">+</span>
+              </span>
+            </td>
+            <td class="text-right">420 сум</td>
+            <td class="text-right font-medium item-total">2 436 сум</td>
+            <td><span class="badge badge--warn">Заканчивается</span></td>
+            <td class="text-center actions-cell">•••</td>
+          </tr>
+
+          <!-- Группа 2 -->
+          <tr class="group-row">
+            <td colspan="10">
+              <span class="group-title">Полуфабрикаты собственного производства</span>
+              <span class="group-count">4 поз.</span>
+              <span class="group-total">на складе 11 052 сум</span>
+            </td>
+          </tr>
+          <tr data-price="46">
+            <td><input type="checkbox" class="row-checkbox"></td>
+            <td>
+              <div class="product-cell">
+                <div class="product-icon">🍕</div>
+                <div>
+                  <div class="product-name">Тесто для пиццы, шар 260 г</div>
+                  <div class="product-sub">Своё производство · шт · 48 ч</div>
+                </div>
+              </div>
+            </td>
+            <td class="text-right font-medium">62 шт</td>
+            <td>
+              <div class="progress-cell">
+                <span class="text-warn font-medium">1,0 дн</span>
+                <div class="progress-bar"><div class="progress-fill fill-warn" style="width: 15%;"></div></div>
+              </div>
+            </td>
+            <td class="text-right">1 840 шт<br><span class="sub-price">34 640 сум</span></td>
+            <td class="text-right">
+              <span class="order-stepper">
+                <span class="step-btn minus">−</span>
+                <span class="step-val">180</span> шт
+                <span class="step-btn plus">+</span>
+              </span>
+            </td>
+            <td class="text-right">46 сум</td>
+            <td class="text-right font-medium item-total">2 852 сум</td>
+            <td><span class="badge badge--warn">Заканчивается</span></td>
+            <td class="text-center actions-cell">•••</td>
+          </tr>
+          <tr data-price="340">
+            <td><input type="checkbox" class="row-checkbox"></td>
+            <td>
+              <div class="product-cell">
+                <div class="product-icon">🍜</div>
+                <div>
+                  <div class="product-name">Бульон даси</div>
+                  <div class="product-sub">Своё производство · л · 3 дн.</div>
+                </div>
+              </div>
+            </td>
+            <td class="text-right font-medium">11,5 л</td>
+            <td>
+              <div class="progress-cell">
+                <span class="text-ok font-medium">3,6 дн</span>
+                <div class="progress-bar"><div class="progress-fill fill-ok" style="width: 60%;"></div></div>
+              </div>
+            </td>
+            <td class="text-right">95 л<br><span class="sub-price">32 646 сум</span></td>
+            <td class="text-right">—</td>
+            <td class="text-right">340 сум</td>
+            <td class="text-right font-medium item-total">3 910 сум</td>
+            <td><span class="badge badge--ok">В норме</span></td>
+            <td class="text-center actions-cell">•••</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ПАГИНАЦИЯ -->
+    <div class="pagination-bar">
+      <span>Показано 10 из 42 позиций</span>
+      <div class="pagination-buttons">
+        <button class="page-btn">Назад</button>
+        <button class="page-btn active">1</button>
+        <button class="page-btn">2</button>
+        <button class="page-btn">3</button>
+        <button class="page-btn">Вперёд</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="./js/script.js"></script>
+</body>
+</html>
